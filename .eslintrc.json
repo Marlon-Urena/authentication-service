@@ -1,0 +1,57 @@
+{
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es2021": true
+    },
+    "extends": [
+        "airbnb-base",
+        "airbnb",
+        "airbnb-typescript",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:import/recommended",
+        "plugin:prettier/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "impliedStrict": true
+        },
+        "ecmaVersion": 12,
+        "sourceType": "module",
+        "project": "./tsconfig.json"
+    },
+    "plugins": [
+        "@typescript-eslint",
+        "prettier",
+        "import"
+    ],
+    "rules": {
+        "no-use-before-define": "off",
+        "import/extensions": [
+            "error",
+            "ignorePackages",
+            {
+                "ts": "never",
+                "tsx": "never",
+                "js": "never"
+            }
+        ],
+        "prettier/prettier": [
+            2,
+            {
+                "printWidth": 100,
+                "singleQuote": true,
+                "trailingComma": "none",
+                "tabWidth": 2,
+                "endOfLine": "auto"
+            }
+        ],
+        "no-unused-vars": [
+            1,
+            {
+                "ignoreRestSiblings": false
+            }
+        ]
+    }
+}

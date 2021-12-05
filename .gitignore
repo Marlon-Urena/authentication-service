@@ -1,0 +1,17 @@
+### Dependencies ###
+node_modules
+node_modules/
+
+### IntelliJ IDE ###
+**/.idea/**
+.idea
+
+# Visual Studio Code
+.vscode
+
+### Environment Files ###
+.env
+.env.local
+
+### Production ###
+.dist
