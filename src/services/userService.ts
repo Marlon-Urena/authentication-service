@@ -17,36 +17,40 @@ interface User {
 }
 
 export async function userAccountRegistration(newUser: User) {
-  const existingUserWithEmail = await UserAccountEntity.findByPk(newUser.email);
-  const existingUserWithUsername = await UserAccountEntity.findOne({ where: { username: newUser.username } });
+  const lowerCaseEmail = newUser.email.toLowerCase();
+  const lowerCaseUsername = newUser.username.toLowerCase();
+  const existingUserWithEmail = await UserAccountEntity.findByPk(lowerCaseEmail);
+  const existingUserWithUsername = await UserAccountEntity.findOne({ where: { username: lowerCaseUsername } });
+
   if (existingUserWithEmail) {
-    throw new RegisterError(`There already exists an account with email ${newUser.email}.`, 409, "auth/email-already-exists");
+    throw new RegisterError(`There already exists an account with email ${lowerCaseEmail}.`, 409, "auth/email-already-exists");
   }
   if (existingUserWithUsername) {
-    throw new RegisterError(`There already exists an account with username ${newUser.username}.`, 409, "auth/username-already-exists");
+    throw new RegisterError(`There already exists an account with username ${lowerCaseUsername}.`, 409, "auth/username-already-exists");
   }
   if (!validateEmail(newUser.email)) {
-    throw new RegisterError(`Invalid email ${newUser.email}.`, 422, 'auth/email-not-valid');
+    throw new RegisterError(`Invalid email ${lowerCaseEmail}.`, 422, 'auth/email-not-valid');
   }
   if (!validateUsername(newUser.username)) {
-    throw new RegisterError(`Invalid username ${newUser.username}.`, 422, 'auth/username-not-valid');
+    throw new RegisterError(`Invalid username ${lowerCaseUsername}.`, 422, 'auth/username-not-valid');
   }
   if (!validatePassword(newUser.password)) {
     throw new RegisterError('Invalid password format.', 422, 'auth/password-not-valid')
   }
 
   getAuth().createUser({
-    email: newUser.email,
-    displayName: newUser.username,
+    email: lowerCaseEmail,
+    displayName: lowerCaseUsername,
     password: newUser.password
   }).then((userRecord) => {
     console.log("Successfully created new user:", userRecord.email);
   }).catch((error) => {
     console.log("Error creating new user:", error);
   });
+
   UserModel.create({
-    email: newUser.email,
-    username: newUser.username,
+    email: lowerCaseEmail,
+    username: lowerCaseUsername,
     firstName: newUser.firstName || null,
     lastName: newUser.lastName || null,
     address: newUser.address || null,
