@@ -5,6 +5,7 @@ import createError from "http-errors";
 import { initializeApp, applicationDefault } from "firebase-admin/app";
 import { errorLogger, errorResponder, invalidPathHandler } from "./middleware";
 import authRouter from "./routes/auth";
+import cors from "cors";
 
 initializeApp({
   credential: applicationDefault()
@@ -12,6 +13,10 @@ initializeApp({
 
 const app = express();
 
+app.use(cors({
+  origin: ['http://localhost:3000', 'https://localhost:3000'],
+  methods: ['POST','OPTIONS']
+}));
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
