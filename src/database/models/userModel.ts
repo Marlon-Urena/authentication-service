@@ -30,7 +30,7 @@ class UserModel extends Model<UserAttributes, UserAttributes> {
 
 UserModel.init(
   {
-    email: { type: DataTypes.STRING, primaryKey: true },
+    email: {type: DataTypes.STRING, primaryKey: true },
     username: { type: DataTypes.STRING, allowNull: false, unique: true },
     firstName: { type: DataTypes.STRING, allowNull: true },
     lastName: { type: DataTypes.STRING, allowNull: true },
@@ -38,11 +38,12 @@ UserModel.init(
     city: { type: DataTypes.STRING, allowNull: true },
     state: { type: DataTypes.STRING, allowNull: true },
     country: { type: DataTypes.STRING, allowNull: true },
-    zipCode: { type: DataTypes.STRING, allowNull: true }
+    zipCode: { type: DataTypes.STRING, allowNull: true },
   },
   {
     sequelize,
-    tableName: 'users'
+    underscored: true,
+    tableName: 'user_account'
   }
 );
 
