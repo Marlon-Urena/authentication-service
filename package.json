@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "yarn run ts-node ./src/bin/index.ts",
-    "start:dev": "yarn run nodemon ./src/bin/index.ts"
+    "start": "yarn run nodemon ./src/bin/index.ts",
+    "start:dev": "yarn run ts-node ./src/bin/index.ts"
   },
   "engines": {
     "yarn": "1.22.17"
