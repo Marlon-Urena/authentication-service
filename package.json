@@ -9,9 +9,6 @@
   "engines": {
     "yarn": "1.22.17"
   },
-  "engines": {
-    "yarn": "1.22.17"
-  },
   "nodemonConfig": {
     "watch": [
       "src"
