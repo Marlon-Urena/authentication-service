@@ -3,27 +3,34 @@
  */
 import app from "../app";
 import * as http from "http";
+import * as https from "https";
 import { debug } from "util";
 
 /**
  * Get port from environment and store in Express.
  */
 
-const port = normalizePort(process.env.PORT || "3002");
-app.set("port", port);
+const httpPort = normalizePort(process.env.HTTP_PORT || "3002");
+const httpsPort = normalizePort(process.env.HTTPS_PORT || '8443');
 
 /**
  * Create HTTP server.
  */
 
-const server = http.createServer(app);
+const httpServer = http.createServer(app);
+const httpsServer = https.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
  */
-server.listen(port);
-server.on("error", onError);
-server.on("listening", onListening);
+httpServer.listen(httpPort);
+httpsServer.listen(httpsPort)
+
+httpServer.on("error", onError);
+httpsServer.on("error", onError);
+
+httpServer.on("listening", () => onListening(httpServer));
+httpsServer.on("listening", () => onListening(httpsServer));
 
 /**
  * Normalize a port into a number, string, or false.
@@ -54,9 +61,9 @@ function onError(error: NodeJS.ErrnoException) {
     throw error;
   }
 
-  const bind = typeof port === "string"
-    ? "Pipe " + port
-    : "Port " + port;
+  const bind = typeof httpPort === "string"
+    ? "Pipe " + httpPort
+    : "Port " + httpPort;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
@@ -77,7 +84,7 @@ function onError(error: NodeJS.ErrnoException) {
  * Event listener for HTTP server "listening" event.
  */
 
-function onListening() {
+function onListening(server: http.Server | https.Server) {
   const addr = server.address();
   const bind = typeof addr === "string"
     ? "pipe " + addr
