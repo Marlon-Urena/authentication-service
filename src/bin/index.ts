@@ -11,7 +11,7 @@ import { debug } from "util";
  */
 
 const httpPort = normalizePort(process.env.HTTP_PORT || "3002");
-const httpsPort = normalizePort(process.env.HTTPS_PORT || '8443');
+const httpsPort = normalizePort(process.env.PORT || '5000');
 
 /**
  * Create HTTP server.
