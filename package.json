@@ -6,6 +6,9 @@
     "start": "ts-node ./src/bin/index.ts",
     "start:dev": "nodemon ./src/bin/index.ts"
   },
+  "engines": {
+    "yarn": "1.22.17"
+  },
   "nodemonConfig": {
     "watch": [
       "src"
