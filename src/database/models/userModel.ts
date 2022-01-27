@@ -23,9 +23,6 @@ class UserModel extends Model<UserAttributes, UserAttributes> {
   public state!: string | null;
   public country!: string | null;
   public zipCode!: string | null;
-
-  public readonly createdAt!: Date;
-  public readonly updatedAt!: Date;
 }
 
 UserModel.init(
@@ -43,7 +40,8 @@ UserModel.init(
   {
     sequelize,
     underscored: true,
-    tableName: 'user_account'
+      timestamps: false,
+      tableName: 'user_account'
   }
 );
 
