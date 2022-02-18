@@ -2,14 +2,14 @@
     "env": {
         "browser": true,
         "commonjs": true,
-        "es2021": true
+        "es2021": true,
+        "node": true
     },
     "extends": [
-        "airbnb-base",
-        "airbnb",
-        "airbnb-typescript",
+        "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
         "plugin:import/recommended",
+        "plugin:import/typescript",
         "plugin:prettier/recommended"
     ],
     "parser": "@typescript-eslint/parser",
@@ -33,7 +33,6 @@
             "ignorePackages",
             {
                 "ts": "never",
-                "tsx": "never",
                 "js": "never"
             }
         ],
@@ -53,5 +52,19 @@
                 "ignoreRestSiblings": false
             }
         ]
+    },
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "extensions": [
+                    ".js",
+                    ".ts"
+                ],
+                "moduleDirectory": [
+                    "node_modules/",
+                    "src/"
+                ]
+            }
+        }
     }
 }

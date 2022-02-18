@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "module": "commonjs",
-        "moduleResolution": "Node",
+        "moduleResolution": "node",
         "noImplicitThis": true,
         "esModuleInterop": true,
         "target": "es2018",
@@ -12,7 +12,9 @@
         "sourceMap": true,
         "strict": true,
         "outDir": ".dist",
-        "baseUrl": "./",
+        "baseUrl": ".",
+        "rootDir": "src",
+        "allowSyntheticDefaultImports": true,
         "paths": {
             "*": [
                 "node_modules/*",

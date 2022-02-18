@@ -6,8 +6,8 @@ class RegisterError extends Error {
     super();
     this.statusCode = statusCode ?? 500;
     this.name = this.constructor.name;
-    this.code = code ?? "error";
-    this.message = message ?? "Error occurred";
+    this.code = code ?? 'error';
+    this.message = message ?? 'Error occurred';
   }
 }
 
