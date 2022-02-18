@@ -2,6 +2,7 @@ import { DataTypes, Model } from 'sequelize';
 import { sequelize } from '../index';
 
 interface UserAttributes {
+  uid: string;
   email: string;
   username: string;
   firstName: string | null;
@@ -17,7 +18,8 @@ class UserModel extends Model<UserAttributes, UserAttributes> {}
 
 UserModel.init(
   {
-    email: { type: DataTypes.STRING, primaryKey: true },
+    uid: { type: DataTypes.STRING, primaryKey: true },
+    email: { type: DataTypes.STRING, allowNull: false, unique: true },
     username: { type: DataTypes.STRING, allowNull: false, unique: true },
     firstName: { type: DataTypes.STRING, allowNull: true },
     lastName: { type: DataTypes.STRING, allowNull: true },
