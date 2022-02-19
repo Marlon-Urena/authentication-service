@@ -1,6 +1,6 @@
 import UserModel from '../database/models/userModel';
 import { RegisterError } from '../exceptions/error';
-import admin from 'firebase-admin';
+import * as admin from 'firebase-admin';
 
 interface User {
   uid: string;
@@ -23,7 +23,7 @@ export async function userAccountRegistration(newUser: User) {
   const existingUserWithUsername = await UserModel.findOne({
     where: { username: lowerCaseTrimmedUsername }
   });
-
+  console.log('register');
   if (existingUserWithEmail) {
     throw new RegisterError(
       `There already exists an account with email ${lowerCaseTrimmedEmail}.`,

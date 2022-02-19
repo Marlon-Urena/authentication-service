@@ -1,17 +1,16 @@
 /**
  * Module dependencies.
  */
-import app from "../app";
-import * as http from "http";
-import { debug } from "util";
+import app from '../app';
+import * as http from 'http';
+import { debug } from 'util';
 
 /**
  * Get port from environment and store in Express.
  */
 
-const port = normalizePort(process.env.PORT || "3002");
-app.set("port", port);
-
+const port = normalizePort(process.env.PORT || '3002');
+app.set('port', port);
 
 /**
  * Create HTTP server.
@@ -24,9 +23,9 @@ const httpServer = http.createServer(app);
  */
 httpServer.listen(port);
 
-httpServer.on("error", onError);
+httpServer.on('error', onError);
 
-httpServer.on("listening", () => onListening(httpServer));
+httpServer.on('listening', () => onListening(httpServer));
 
 /**
  * Normalize a port into a number, string, or false.
@@ -53,22 +52,20 @@ function normalizePort(val: string) {
  */
 
 function onError(error: NodeJS.ErrnoException) {
-  if (error.syscall !== "listen") {
+  if (error.syscall !== 'listen') {
     throw error;
   }
 
-  const bind = typeof port === "string"
-    ? "Pipe " + port
-    : "Port " + port;
+  const bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
-    case "EACCES":
-      console.error(bind + " requires elevated privileges");
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
       process.exit(1);
       break;
-    case "EADDRINUSE":
-      console.error(bind + " is already in use");
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
       process.exit(1);
       break;
     default:
@@ -82,8 +79,6 @@ function onError(error: NodeJS.ErrnoException) {
 
 function onListening(server: http.Server) {
   const addr = server.address();
-  const bind = typeof addr === "string"
-    ? "pipe " + addr
-    : "port " + addr!.port;
-  debug("Listening on " + bind);
+  const bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr?.port || 3002;
+  debug('Listening on ' + bind);
 }
