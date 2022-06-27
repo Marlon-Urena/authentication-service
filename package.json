@@ -2,9 +2,10 @@
   "name": "authentication-service",
   "version": "0.0.0",
   "private": true,
+  "main": "dist/bin/index.js",
   "scripts": {
-    "start": "ts-node ./src/bin/index.ts",
-    "start:dev": "nodemon ./src/bin/index.ts"
+    "start": "tsc && node ./dist/bin/index.js",
+    "start:dev": "ts-node ./src/bin/index.ts"
   },
   "nodemonConfig": {
     "watch": [
@@ -39,9 +40,11 @@
     "@typescript-eslint/eslint-plugin": "^5.3.1",
     "@typescript-eslint/parser": "^5.3.1",
     "eslint": "^7.32.0",
-    "eslint-config-airbnb": "^19.0.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^15.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-typescript": "^3.1.0",
+    "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.0.0",
     "nodemon": "^2.0.15",
     "prettier": "^2.4.1",
